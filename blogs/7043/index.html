@@ -55,7 +55,7 @@
 <meta property="og:image" content="http://example.com/blogs/7043/image-20240212120440043.png">
 <meta property="og:image" content="http://example.com/blogs/7043/image-20240501163451000.png">
 <meta property="article:published_time" content="2024-05-01T08:03:01.000Z">
-<meta property="article:modified_time" content="2024-05-01T11:59:52.161Z">
+<meta property="article:modified_time" content="2024-05-01T12:59:22.164Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/blogs/7043/image-20240212115749523.png">
@@ -77,7 +77,7 @@
 
 
 
-<link rel="dns-prefetch" href="https://blogs-waline-ojwmzvjhv-jiajun-pengs-projects.vercel.app/">
+<link rel="dns-prefetch" href="https://blogs-waline.vercel.app/">
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
@@ -204,7 +204,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-05-01 16:03:01 / Modified: 19:59:52" itemprop="dateCreated datePublished" datetime="2024-05-01T16:03:01+08:00">2024-05-01</time>
+      <time title="Created: 2024-05-01 16:03:01 / Modified: 20:59:22" itemprop="dateCreated datePublished" datetime="2024-05-01T16:03:01+08:00">2024-05-01</time>
     </span>
 
   
@@ -398,6 +398,13 @@
 <p><a target="_blank" rel="noopener" href="https://hyf.js.org/2022/10/2022-10-Hexo-Next-v8-versions-Waline/">Hexo 使用 Waline 评论系统（Hexo Next 主题版本 (V8+) 的那些事） | Y.a.F.e.Y Blog (hyf.js.org)</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiunian_2761/article/details/122621667">Hexo博客进阶：为 Next 主题添加 Waline 评论系统_waline&#x2F;hexo-next-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/408073423">Hexo使用Waline评论系统 - 知乎 (zhihu.com)</a></p>
+<p>注意点：</p>
+<ul>
+<li><p>如果使用Next主题的话需要确保版本是8.0+</p>
+</li>
+<li><p>拉取评论时可能报401 Unauthorized异常，原因是waline的serverURL没有正确设置，<strong>不要</strong>设置为中间有一段随机英文字符的域名</p>
+</li>
+</ul>
 
     </div>
 
@@ -481,7 +488,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://blogs-waline-ojwmzvjhv-jiajun-pengs-projects.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/blogs/7043/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://blogs-waline.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/blogs/7043/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
