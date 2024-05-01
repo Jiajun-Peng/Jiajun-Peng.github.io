@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前置准备安装Node.js Node.js (nodejs.org) 验证安装结果： 1node -v  配置国内镜像加速： npm报错：request to https:&#x2F;&#x2F;registry.npm.taobao.org failed, reason certificate has expired_npm reason: certificate has expired-CSDN博客 1npm c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo搭建博客">
+<meta property="og:url" content="http://example.com/blogs/7043/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前置准备安装Node.js Node.js (nodejs.org) 验证安装结果： 1node -v  配置国内镜像加速： npm报错：request to https:&#x2F;&#x2F;registry.npm.taobao.org failed, reason certificate has expired_npm reason: certificate has expired-CSDN博客 1npm c">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212115749523.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212121359193.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212121603283.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240211155643867.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240211172337320.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240211172530736.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212170641180.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212170557854.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212175315342.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321235129650.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321235314926.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212172720405.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212172950062.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212173134008.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212174223217.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212174329859.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212174636246.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212174835039.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321223553206.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321224305557.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321224531146.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240321224709213.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212181038924.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212181238873.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212181358103.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212120410439.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240212120440043.png">
+<meta property="og:image" content="http://example.com/blogs/7043/image-20240501163451000.png">
+<meta property="article:published_time" content="2024-05-01T08:03:01.000Z">
+<meta property="article:modified_time" content="2024-05-01T11:59:52.161Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/blogs/7043/image-20240212115749523.png">
+
+
+<link rel="canonical" href="http://example.com/blogs/7043/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/blogs/7043/","path":"blogs/7043/","title":"使用Hexo搭建博客"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用Hexo搭建博客 | Hexo</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blogs-waline-ojwmzvjhv-jiajun-pengs-projects.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">前置准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85hexo"><span class="nav-number">2.</span> <span class="nav-text">安装hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8D%9A%E5%AE%A2%E7%9B%AE%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">初始化博客目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88%E9%BB%98%E8%AE%A4%E7%BD%91%E7%AB%99"><span class="nav-number">4.</span> <span class="nav-text">本地预览默认网站</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E6%96%B0%E6%96%87%E7%AB%A0"><span class="nav-number">5.</span> <span class="nav-text">编写新文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0"><span class="nav-number">6.</span> <span class="nav-text">修改文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E7%AB%A0%E7%9A%84%E8%AE%BF%E9%97%AE%E8%B7%AF%E5%BE%84"><span class="nav-number">7.</span> <span class="nav-text">修改文章的访问路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E5%8D%9A%E5%AE%A2%E6%89%98%E7%AE%A1%E5%88%B0GitHub"><span class="nav-number">8.</span> <span class="nav-text">将博客托管到GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BAGitHub%E4%BB%93%E5%BA%93"><span class="nav-number">8.1.</span> <span class="nav-text">新建GitHub仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2%E5%88%B0GitHub%E5%B9%B6%E5%8F%91%E5%B8%83"><span class="nav-number">8.2.</span> <span class="nav-text">关联本地博客到GitHub并发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%9F%9F%E5%90%8D%E8%AE%BF%E9%97%AE"><span class="nav-number">8.3.</span> <span class="nav-text">配置域名访问</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">切换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="nav-number">9.1.</span> <span class="nav-text">修改主题配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#node-js%E8%AF%81%E4%B9%A6%E8%BF%87%E6%9C%9F%E9%97%AE%E9%A2%98"><span class="nav-number">10.</span> <span class="nav-text">node.js证书过期问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEgithub%E4%BB%93%E5%BA%93%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">11.</span> <span class="nav-text">无法访问github仓库的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%A6%96%E9%A1%B5%E6%96%87%E7%AB%A0%E6%8A%98%E5%8F%A0-reade-more"><span class="nav-number">12.</span> <span class="nav-text">设置首页文章折叠-reade more</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Waline%E8%AF%84%E8%AE%BA"><span class="nav-number">13.</span> <span class="nav-text">添加Waline评论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/blogs/7043/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用Hexo搭建博客 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Hexo搭建博客
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-05-01 16:03:01 / Modified: 19:59:52" itemprop="dateCreated datePublished" datetime="2024-05-01T16:03:01+08:00">2024-05-01</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline: </span>
+  
+    <a title="waline" href="/blogs/7043/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blogs/7043/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="前置准备"><a href="#前置准备" class="headerlink" title="前置准备"></a>前置准备</h1><p>安装Node.js</p>
+<p><a target="_blank" rel="noopener" href="https://nodejs.org/en">Node.js (nodejs.org)</a></p>
+<p>验证安装结果：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<p>配置国内镜像加速：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ganyingxie123456/article/details/135850728">npm报错：request to https://registry.npm.taobao.org failed, reason certificate has expired_npm reason: certificate has expired-CSDN博客</a></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>安装Git</p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git - Downloads (git-scm.com)</a></p>
+<span id="more"></span>
+
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>安装hexo：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>查看安装结果：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>升级Hexo：<a target="_blank" rel="noopener" href="https://novnan.github.io/Hexo/update_hexo/">Hexo版本升级指南 | novnan’s notes</a></p>
+</blockquote>
+<h1 id="初始化博客目录"><a href="#初始化博客目录" class="headerlink" title="初始化博客目录"></a>初始化博客目录</h1><p>在某个空文件夹下运行hexo init命令，将该文件夹初始化，我这里使用blog-site目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; hexo init</span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">warning hexo &gt; warehouse &gt; cuid@2.1.8: Cuid and other k-sortable and non-cryptographic ids (Ulid, ObjectId, KSUID, all UUIDs) are all insecure. Use @paralleldrive/cuid2 instead.</span><br><span class="line">warning hexo-renderer-marked &gt; jsdom &gt; domexception@4.0.0: Use your platform<span class="string">&#x27;s native DOMException instead</span></span><br><span class="line"><span class="string">warning hexo-renderer-marked &gt; jsdom &gt; abab@2.0.6: Use your platform&#x27;</span>s native atob() and btoa() methods instead</span><br><span class="line">warning hexo-renderer-marked &gt; jsdom &gt; data-urls &gt; abab@2.0.6: Use your platform<span class="string">&#x27;s native atob() and btoa() methods instINFO  Start blogging with Hexo!</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>有几个warning，不用管</p>
+</blockquote>
+<p>初始化后,在空目录下创建了如下文件:</p>
+<p><img src="/blogs/7043/image-20240212115749523.png" alt="image-20240212115749523"></p>
+<h1 id="本地预览默认网站"><a href="#本地预览默认网站" class="headerlink" title="本地预览默认网站"></a>本地预览默认网站</h1><p>初始化之后,就创建了一个博客完整项目,使用<code>hexo g</code>命令编译项目,编译完成后使用<code>hexo s</code>开启本地服务:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; hexo g</span><br><span class="line">INFO  Validating config</span><br><span class="line">.....</span><br><span class="line">INFO  11 files generated <span class="keyword">in</span> 195 ms</span><br><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; hexo s</span><br><span class="line">INFO  Validating config</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000/ . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p>输出显示,访问:<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+<p>访问可以看到一篇名为Hello World的默认文章:</p>
+<p><img src="/blogs/7043/image-20240212121359193.png" alt="image-20240212121359193"></p>
+<blockquote>
+<p>文章保存在目录下的<code>\source\_posts</code>目录中</p>
+<p><img src="/blogs/7043/image-20240212121603283.png" alt="image-20240212121603283"></p>
+</blockquote>
+<h1 id="编写新文章"><a href="#编写新文章" class="headerlink" title="编写新文章"></a>编写新文章</h1><p>文章保存在博客根目录下的<code>\source\_posts</code>目录下</p>
+<p><img src="/blogs/7043/image-20240211155643867.png" alt="image-20240211155643867"></p>
+<p>文章中可能需要添加图片,那么还需要额外配置</p>
+<p>更改根目录下的<code>config.yaml</code>文件中的配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>当该配置被应用后，使用<code>hexo new</code>命令创建新文章时，会生成相同名字的文件夹，也就是文章资源文件夹。</p>
+<p><img src="/blogs/7043/image-20240211172337320.png" alt="image-20240211172337320"></p>
+<p><img src="/blogs/7043/image-20240211172530736.png" alt="image-20240211172530736"></p>
+<p>在typro中打开，显示如下:</p>
+<p><img src="/blogs/7043/image-20240212170641180.png" alt="image-20240212170641180"></p>
+<p>hexo预览效果:</p>
+<p><img src="/blogs/7043/image-20240212170557854.png" alt="image-20240212170557854"></p>
+<p>解决方案,添加插件:<code>https://github.com/CodeFalling/hexo-asset-image</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn add https://github.com/CodeFalling/hexo-asset-image</span><br><span class="line">yarn add v1.22.21</span><br><span class="line">[1/4] Resolving packages...</span><br><span class="line">[2/4] Fetching packages...</span><br><span class="line">[3/4] Linking dependencies...</span><br><span class="line">[4/4] Building fresh packages...</span><br><span class="line">success Saved lockfile.</span><br><span class="line">success Saved 11 new dependencies.</span><br><span class="line">info Direct dependencies</span><br><span class="line">└─ hexo-asset-image@0.0.5</span><br><span class="line">info All dependencies</span><br><span class="line">├─ cheerio@0.19.0</span><br><span class="line">├─ core-util-is@1.0.3</span><br><span class="line">├─ css-select@1.0.0</span><br><span class="line">├─ css-what@1.0.0</span><br><span class="line">├─ dom-serializer@0.1.1</span><br><span class="line">├─ entities@1.1.2</span><br><span class="line">├─ hexo-asset-image@0.0.5</span><br><span class="line">├─ isarray@0.0.1</span><br><span class="line">├─ lodash@3.10.1</span><br><span class="line">├─ nth-check@1.0.2</span><br><span class="line">└─ readable-stream@1.1.13</span><br><span class="line">Done <span class="keyword">in</span> 9.77s.</span><br></pre></td></tr></table></figure>
+
+<p>添加完插件后,依次使用<code>hexo clean</code>, <code>hexo g</code> , <code>hexo s</code>命令重新生成本地预览,预览效果如下:</p>
+<p><img src="/blogs/7043/image-20240212175315342.png" alt="image-20240212175315342"></p>
+<h1 id="修改文章"><a href="#修改文章" class="headerlink" title="修改文章"></a>修改文章</h1><p>可直接修改文章，并运行<code>hexo clean</code>, <code>hexo g</code>命令重新生成</p>
+<h1 id="修改文章的访问路径"><a href="#修改文章的访问路径" class="headerlink" title="修改文章的访问路径"></a>修改文章的访问路径</h1><p>文章的默认访问路径是日期+文章名：<code>/2024/02/12/测试/</code></p>
+<p>修改为类似：<code>blogs/1234</code></p>
+<p><strong>实现方式</strong></p>
+<p>修改_config文件中permalink的值</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">blogs/:abbrlink/</span></span><br></pre></td></tr></table></figure>
+
+<p>在hexo博客的主目录下安装hexo-abbrlink</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+
+<p>这样，使用<code>hexo g</code>重新生成的博客，将会添加abbrlink属性</p>
+<blockquote>
+<p>如果发生图片访问不到的情况，请使用<code>hexo clean</code>命令清除一下环境</p>
+</blockquote>
+<p><img src="/blogs/7043/image-20240321235129650.png" alt="image-20240321235129650"></p>
+<p>文章的访问路径也改变了：</p>
+<p><img src="/blogs/7043/image-20240321235314926.png" alt="image-20240321235314926"></p>
+<h1 id="将博客托管到GitHub"><a href="#将博客托管到GitHub" class="headerlink" title="将博客托管到GitHub"></a>将博客托管到GitHub</h1><h2 id="新建GitHub仓库"><a href="#新建GitHub仓库" class="headerlink" title="新建GitHub仓库"></a>新建GitHub仓库</h2><p>需要自己先注册GitHub账号</p>
+<p>注册完账号后,创建一个新仓库,仓库的名字需要满足以下格式:</p>
+<p><code>账户名</code>+<code>.github.io</code></p>
+<p>比如我的github账户名为:<code>Jiajun-Peng</code>,那么我创建的新仓库名为:<code>Jiajun-Peng.github.io</code></p>
+<p>具体的创建步骤如下:</p>
+<p><img src="/blogs/7043/image-20240212172720405.png" alt="image-20240212172720405"></p>
+<p><img src="/blogs/7043/image-20240212172950062.png" alt="image-20240212172950062"></p>
+<p><img src="/blogs/7043/image-20240212173134008.png" alt="image-20240212173134008"></p>
+<h2 id="关联本地博客到GitHub并发布"><a href="#关联本地博客到GitHub并发布" class="headerlink" title="关联本地博客到GitHub并发布"></a>关联本地博客到GitHub并发布</h2><p>目前,我的GitHub仓库的地址是:<code>https://github.com/Jiajun-Peng/Jiajun-Peng.github.io.git</code></p>
+<p>修改博客根目录中的<code>_config.yml</code>文件,并修改deploy位置的配置,配置如下:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/Jiajun-Peng/Jiajun-Peng.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>在发布到远程仓库之前,还需安装<code>hexo-deployer-git</code>插件，命令：</p>
+<p><code>yarn add hexo-deployer-git</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn add hexo-deployer-git</span><br><span class="line">yarn add v1.22.21</span><br><span class="line">[1/4] Resolving packages...</span><br><span class="line">[2/4] Fetching packages...</span><br><span class="line">[3/4] Linking dependencies...</span><br><span class="line">[4/4] Building fresh packages...</span><br><span class="line">success Saved lockfile.</span><br><span class="line">success Saved 2 new dependencies.</span><br><span class="line">info Direct dependencies</span><br><span class="line">└─ hexo-deployer-git@4.0.0</span><br><span class="line">info All dependencies</span><br><span class="line">├─ hexo-deployer-git@4.0.0</span><br><span class="line">└─ luxon@3.4.4</span><br><span class="line">Done <span class="keyword">in</span> 1.77s.</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后,使用<code>hexo d</code>命令即可发布到GitHub.</p>
+<p><img src="/blogs/7043/image-20240212174223217.png" alt="image-20240212174223217"></p>
+<p>发布成功后,可以在Github网站页面看到:</p>
+<p><img src="/blogs/7043/image-20240212174329859.png" alt="image-20240212174329859"></p>
+<p>在Settings -&gt; Pages页即可以看到博客的访问地址:</p>
+<p><img src="/blogs/7043/image-20240212174636246.png" alt="image-20240212174636246"></p>
+<p>访问<a target="_blank" rel="noopener" href="https://jiajun-peng.github.io/,%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%88%91%E4%BB%AC%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0">https://jiajun-peng.github.io/,可以看到我们的第一篇测试文章</a></p>
+<p><img src="/blogs/7043/image-20240212174835039.png" alt="image-20240212174835039"></p>
+<h2 id="配置域名访问"><a href="#配置域名访问" class="headerlink" title="配置域名访问"></a>配置域名访问</h2><p>比如我有一个名为<code>nobug.world</code>的域名，我希望使用这个域名访问博客，那么可以将域名的解析到github的地址</p>
+<p><img src="/blogs/7043/image-20240321223553206.png" alt="image-20240321223553206"></p>
+<p>增加两条解析记录：</p>
+<p><img src="/blogs/7043/image-20240321224305557.png" alt="image-20240321224305557"></p>
+<p>并在github上配置自定义域名：</p>
+<p><img src="/blogs/7043/image-20240321224531146.png" alt="image-20240321224531146"></p>
+<p>接着，就可以使用域名访问博客了</p>
+<p><img src="/blogs/7043/image-20240321224709213.png" alt="image-20240321224709213"></p>
+<h1 id="切换主题"><a href="#切换主题" class="headerlink" title="切换主题"></a>切换主题</h1><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/themes.html">主题 | Hexo</a></p>
+<p>更换 Hexo 主题非常容易，只要在 根目录下的<code>themes</code> 文件夹内，新增一个名为主题名称的文件夹(用于存放主题文件)，并修改 <code>_config.yml</code> 内的 <code>theme</code> 设置，即可切换主题。</p>
+<p>这里选用Next作为新主题.</p>
+<p>切换主题的步骤是,下载主题文件,并将文件放到themes文件夹中,下载主题文件的方式即可以从待选用主题的官网下载也可以去github上将该主题clone下来.</p>
+<p>Next的官网:<a target="_blank" rel="noopener" href="https://theme-next.iissnan.com/">NexT 使用文档 (iissnan.com)</a></p>
+<p>Next的Github仓库:<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">theme-next&#x2F;hexo-theme-next: Elegant and powerful theme for Hexo. (github.com)</a></p>
+<p>这里使用clone的方式下载主题,切换路径到博客的根目录,再clone:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+
+<p>下载完成后,themes目录下多了一个名为next的目录,其中保存了主题的相关文件:</p>
+<p><img src="/blogs/7043/image-20240212181038924.png" alt="image-20240212181038924"></p>
+<p>修改配置:</p>
+<p><img src="/blogs/7043/image-20240212181238873.png" alt="image-20240212181238873"></p>
+<p>重新生成预览后:</p>
+<p><img src="/blogs/7043/image-20240212181358103.png" alt="image-20240212181358103"></p>
+<h2 id="修改主题配置"><a href="#修改主题配置" class="headerlink" title="修改主题配置"></a>修改主题配置</h2><h1 id="node-js证书过期问题"><a href="#node-js证书过期问题" class="headerlink" title="node.js证书过期问题"></a>node.js证书过期问题</h1><p>使用<code>hexo init</code>命令初始化：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; hexo init</span><br><span class="line">INFO  Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br><span class="line">INFO  Install dependencies</span><br><span class="line">error Error: certificate has expired</span><br><span class="line">    at TLSSocket.onConnectSecure (node:_tls_wrap:1674:34)</span><br><span class="line">    at TLSSocket.emit (node:events:518:28)</span><br><span class="line">    at TLSSocket._finishInit (node:_tls_wrap:1085:8)</span><br><span class="line">    at ssl.onhandshakedone (node:_tls_wrap:871:12)</span><br><span class="line">WARN  Failed to install dependencies. Please run <span class="string">&#x27;npm install&#x27;</span> <span class="keyword">in</span> <span class="string">&quot;C:\Users\Peng\Desktop\blog-site&quot;</span> folder.</span><br></pre></td></tr></table></figure>
+
+<p>输出显示node相关的证书过期，此时下方提示您使用<code>npm install</code>，当然也可以使用<code>yarn</code></p>
+<p>当我们运行<code>yarn</code>命令，依然会提示证书过期的问题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn</span><br><span class="line">yarn install v1.22.21</span><br><span class="line">info No lockfile found.</span><br><span class="line">[1/4] Resolving packages...</span><br><span class="line">error Error: certificate has expired</span><br><span class="line">    at TLSSocket.onConnectSecure (node:_tls_wrap:1674:34)</span><br><span class="line">    at TLSSocket.emit (node:events:518:28)</span><br><span class="line">    at TLSSocket._finishInit (node:_tls_wrap:1085:8)</span><br><span class="line">    at ssl.onhandshakedone (node:_tls_wrap:871:12)</span><br><span class="line">info Visit https://yarnpkg.com/en/docs/cli/install <span class="keyword">for</span> documentation about this <span class="built_in">command</span>.</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<p>查看yarn配置，可见strict-ssl的值为true，意味着需要使用到CA证书</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn config list</span><br><span class="line">yarn config v1.22.21</span><br><span class="line">info yarn config</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&#x27;version-tag-prefix&#x27;</span>: <span class="string">&#x27;v&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;version-git-tag&#x27;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&#x27;version-commit-hooks&#x27;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&#x27;version-git-sign&#x27;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&#x27;version-git-message&#x27;</span>: <span class="string">&#x27;v%s&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;init-version&#x27;</span>: <span class="string">&#x27;1.0.0&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;init-license&#x27;</span>: <span class="string">&#x27;MIT&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;save-prefix&#x27;</span>: <span class="string">&#x27;^&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;bin-links&#x27;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&#x27;ignore-scripts&#x27;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&#x27;ignore-optional&#x27;</span>: <span class="literal">false</span>,</span><br><span class="line">  registry: <span class="string">&#x27;https://registry.yarnpkg.com&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;strict-ssl&#x27;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&#x27;user-agent&#x27;</span>: <span class="string">&#x27;yarn/1.22.21 npm/? node/v20.11.0 win32 x64&#x27;</span>,</span><br><span class="line">  lastUpdateCheck: 1707636739137</span><br><span class="line">&#125;</span><br><span class="line">info npm config</span><br><span class="line">&#123;</span><br><span class="line">  registry: <span class="string">&#x27;https://registry.npm.taobao.org&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">Done <span class="keyword">in</span> 0.03s.</span><br></pre></td></tr></table></figure>
+
+<p>设置禁用ssl：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn config <span class="built_in">set</span> strict-ssl <span class="literal">false</span></span><br><span class="line">yarn config v1.22.21</span><br><span class="line">success Set <span class="string">&quot;strict-ssl&quot;</span> to <span class="string">&quot;false&quot;</span>.</span><br><span class="line">Done <span class="keyword">in</span> 0.03s.</span><br><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt;</span><br></pre></td></tr></table></figure>
+
+<p>设置完后，再使用<code>yarn</code>命令安装依赖：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PS C:\Users\Peng\Desktop\blog-site&gt; yarn</span><br><span class="line">yarn install v1.22.21</span><br><span class="line">info No lockfile found.</span><br><span class="line">[1/4] Resolving packages...</span><br><span class="line">warning hexo &gt; warehouse &gt; cuid@2.1.8: Cuid and other k-sortable and non-cryptographic ids (Ulid, ObjectId, KSUID, all UUIDs) are all insecure. Use @paralleldrive/cuid2 instead.</span><br><span class="line">warning hexo-renderer-marked &gt; jsdom &gt; domexception@4.0.0: Use your platform<span class="string">&#x27;s native DOMException instead</span></span><br><span class="line"><span class="string">warning hexo-renderer-marked &gt; jsdom &gt; abab@2.0.6: Use your platform&#x27;</span>s native atob() and btoa() methods instead</span><br><span class="line">warning hexo-renderer-marked &gt; jsdom &gt; data-urls &gt; abab@2.0.6: Use your platform<span class="string">&#x27;s native atob() and btoa() methods instead</span></span><br><span class="line"><span class="string">[2/4] Fetching packages...</span></span><br><span class="line"><span class="string">[3/4] Linking dependencies...</span></span><br><span class="line"><span class="string">[4/4] Building fresh packages...</span></span><br><span class="line"><span class="string">success Saved lockfile.</span></span><br><span class="line"><span class="string">Done in 10.64s.</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="无法访问github仓库的问题"><a href="#无法访问github仓库的问题" class="headerlink" title="无法访问github仓库的问题"></a>无法访问github仓库的问题</h1><p>可以在浏览器中访问github(使用vpn),但无法在控制台使用git clone命令来克隆github中的仓库到本地:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to connect to github.com port 443</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方案</strong></p>
+<p>windows系统中打开设置–网络–代理</p>
+<p><img src="/blogs/7043/image-20240212120410439.png" alt="image-20240212120410439"></p>
+<p><img src="/blogs/7043/image-20240212120440043.png" alt="image-20240212120440043"></p>
+<p><strong>打开代理服务器,并为git设置该代理服务器</strong></p>
+<p>查看git配置:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ git config --list</span><br><span class="line">diff.astextplain.textconv=astextplain</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=<span class="literal">true</span></span><br><span class="line">http.sslbackend=openssl</span><br><span class="line">http.sslcainfo=C:/Program Files/Git/mingw64/etc/ssl/certs/ca-bundle.crt</span><br><span class="line">core.autocrlf=<span class="literal">true</span></span><br><span class="line">core.fscache=<span class="literal">true</span></span><br><span class="line">core.symlinks=<span class="literal">false</span></span><br><span class="line">pull.rebase=<span class="literal">false</span></span><br><span class="line">credential.helper=manager</span><br><span class="line">credential.https://dev.azure.com.usehttppath=<span class="literal">true</span></span><br><span class="line">init.defaultbranch=master</span><br><span class="line">user.name=Jiajun-Peng</span><br><span class="line">user.email=pengjiajun566@gmail.com</span><br></pre></td></tr></table></figure>
+
+<p>设置git代理服务器:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global http.proxy 127.0.0.1:21882</span><br></pre></td></tr></table></figure>
+
+<p>设置完之后,就可以使用git clone来克隆github中的仓库了</p>
+<blockquote>
+<p>如果需要取消使用代理,可以使用如下命令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="设置首页文章折叠-reade-more"><a href="#设置首页文章折叠-reade-more" class="headerlink" title="设置首页文章折叠-reade more"></a>设置首页文章折叠-reade more</h1><p>next主题默认在首页展示文章全文，一般我们希望仅展示部分内容，如下样式：</p>
+<p><img src="/blogs/7043/image-20240501163451000.png" alt="image-20240501163451000"></p>
+<p>我采用的方案是在文章需要隐藏的内容之前添加<code>&lt;!--more--&gt;</code>。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next/issues/62">请问如何设置read more? · Issue #62 · iissnan&#x2F;hexo-theme-next (github.com)</a></p>
+<h1 id="添加Waline评论"><a href="#添加Waline评论" class="headerlink" title="添加Waline评论"></a>添加Waline评论</h1><p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://waline.js.org/guide/get-started/">快速上手 | Waline</a></p>
+<p><a target="_blank" rel="noopener" href="https://guanqr.com/tech/website/introduction-and-basic-setting-of-waline/">Waline 评论系统的介绍与基础配置 | 荷戟独彷徨 (guanqr.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://hyf.js.org/2022/10/2022-10-Hexo-Next-v8-versions-Waline/">Hexo 使用 Waline 评论系统（Hexo Next 主题版本 (V8+) 的那些事） | Y.a.F.e.Y Blog (hyf.js.org)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jiunian_2761/article/details/122621667">Hexo博客进阶：为 Next 主题添加 Waline 评论系统_waline&#x2F;hexo-next-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/408073423">Hexo使用Waline评论系统 - 知乎 (zhihu.com)</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/37774/" rel="prev" title="测试">
+                  <i class="fa fa-angle-left"></i> 测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://blogs-waline-ojwmzvjhv-jiajun-pengs-projects.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/blogs/7043/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
