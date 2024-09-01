@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nobug.world","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="最近在折腾个人博客，我选择了 Hexo + NexT 的方案。  博客地址：nobug.world  Hexo 的版本是： hexo: 7.2.0 NexT 主题的版本是：next-theme&#x2F;hexo-theme-next: 🎉 Elegant and powerful theme for Hexo. (github.com) 起因这搭建博客的过程中，我希望在所有的文章的末尾都加上我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次为NexT主题提交PR的经过">
+<meta property="og:url" content="https://nobug.world/blogs/21720/index.html">
+<meta property="og:site_name" content="nobug.world">
+<meta property="og:description" content="最近在折腾个人博客，我选择了 Hexo + NexT 的方案。  博客地址：nobug.world  Hexo 的版本是： hexo: 7.2.0 NexT 主题的版本是：next-theme&#x2F;hexo-theme-next: 🎉 Elegant and powerful theme for Hexo. (github.com) 起因这搭建博客的过程中，我希望在所有的文章的末尾都加上我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://nobug.world/blogs/21720/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831204940929.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831205131507.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831210115583.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831210521179.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831210618171.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831211449357.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831212046068.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831212708999.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831212018720.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901083926322.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831214049853.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831214438826.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240831214504348.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901084257134.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901080233487.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901092041031.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901095057904.png">
+<meta property="og:image" content="https://nobug.world/blogs/21720/image-20240901095800369.png">
+<meta property="article:published_time" content="2024-09-01T02:23:53.000Z">
+<meta property="article:modified_time" content="2024-09-01T02:25:56.054Z">
+<meta property="article:author" content="彭嘉俊">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nobug.world/blogs/21720/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png">
+
+
+<link rel="canonical" href="https://nobug.world/blogs/21720/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nobug.world/blogs/21720/","path":"blogs/21720/","title":"记一次为NexT主题提交PR的经过"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记一次为NexT主题提交PR的经过 | nobug.world</title>
+  
+
+
+
+
+
+
+
+<link rel="dns-prefetch" href="https://blogs-waline.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">nobug.world</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">彭嘉俊的个人记录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="nav-text">问题排查</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A2%E7%B4%A2%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">探索解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E4%B8%8D%E5%AE%8C%E6%95%B4%E9%97%AE%E9%A2%98"><span class="nav-text">二维码图片显示不完整问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%8E%A8%E5%B9%BF%E5%9B%BE%E5%AE%BD%E5%BA%A6%E9%97%AE%E9%A2%98"><span class="nav-text">微信公众号推广图宽度问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="nav-text">修改代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0-z-index-%E5%B1%9E%E6%80%A7"><span class="nav-text">增加 z-index 属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-max-width-%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-text">定义 max-width 属性值的变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4-PR"><span class="nav-text">提交 PR</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">彭嘉俊</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Jiajun-Peng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Jiajun-Peng" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:pengjiajun566@gmail.com" title="E-Mail → mailto:pengjiajun566@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=Mzg2ODgyNTM2NQ==&scene=117" title="https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;mp&#x2F;profile_ext?action&#x3D;home&amp;__biz&#x3D;Mzg2ODgyNTM2NQ&#x3D;&#x3D;&amp;scene&#x3D;117" rel="noopener" target="_blank">我的个人公众号</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nobug.world/blogs/21720/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="彭嘉俊">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="nobug.world">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="记一次为NexT主题提交PR的经过 | nobug.world">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记一次为NexT主题提交PR的经过
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-01 10:23:53 / 修改时间：10:25:56" itemprop="dateCreated datePublished" datetime="2024-09-01T10:23:53+08:00">2024-09-01</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blogs/21720/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blogs/21720/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blogs/21720/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>最近在折腾个人博客，我选择了 Hexo + NexT 的方案。</p>
+<blockquote>
+<p>博客地址：nobug.world</p>
+</blockquote>
+<p>Hexo 的版本是： <code>hexo: 7.2.0</code></p>
+<p>NexT 主题的版本是：<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">next-theme&#x2F;hexo-theme-next: 🎉 Elegant and powerful theme for Hexo. (github.com)</a></p>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>这搭建博客的过程中，我希望在所有的文章的末尾都加上我个人公众号的推广二维码图片。</p>
+<p><img src="/blogs/21720/%E6%89%AB%E7%A0%81_%E6%90%9C%E7%B4%A2%E8%81%94%E5%90%88%E4%BC%A0%E6%92%AD%E6%A0%B7%E5%BC%8F-%E6%A0%87%E5%87%86%E8%89%B2%E7%89%88.png" alt="扫码_搜索联合传播样式-标准色版"></p>
+<p>幸运的是，只需要在 NexT 主题的 <code>_config.yml</code> 配置文件中设置 <code>follow_me</code> 配置项中的 <code>WeChat</code> 即可，配置方式如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Subscribe through Telegram Channel, Twitter, etc.</span></span><br><span class="line"><span class="comment"># Usage: `Key: permalink || icon` (Font Awesome)</span></span><br><span class="line"><span class="attr">follow_me:</span></span><br><span class="line">  <span class="comment">#Twitter: https://twitter.com/username || fab fa-twitter</span></span><br><span class="line">  <span class="comment">#Telegram: https://t.me/channel_name || fab fa-telegram</span></span><br><span class="line">  <span class="attr">WeChat:</span> <span class="string">/images/wechat_channel.png</span> <span class="string">||</span> <span class="string">fab</span> <span class="string">fa-weixin</span></span><br><span class="line">  <span class="comment">#RSS: /atom.xml || fa fa-rss</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>/images/wechat_channel.png</code> 是公众号推广图片的地址。</p>
+<p>其中，<code>images</code> 是主题中的目录，即：<code>themes\next\source\images</code></p>
+<blockquote>
+<p>如何下载公众号推广图片</p>
+<p>登录微信公众平台，在 <code>设置与开发 &gt; 公众号设置 &gt; 下载二维码</code> 中即可下载到二维码的图片。</p>
+</blockquote>
+<p>将对应的图片修改名称为 <code>wechat_channel.png</code>，并放置到对应的目录中即可。</p>
+<p>执行 <code>hexo s -g</code> 命令，在本地预览文章，效果如下：</p>
+<p><img src="/blogs/21720/image-20240831204940929.png" alt="image-20240831204940929"></p>
+<p>在文章末尾，增加了 <code>欢迎关注我的其他发布渠道</code> 的组件，其中包含我们配置的微信公众号，将鼠标移动到微信的图标上，即可展示二维码的图片。</p>
+<p>但是展示的二维码图片很小，相机无法识别出二维码。</p>
+<h1 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h1><p>先查看原图的像素有 <code>2092 * 624</code>，正常来说这个像素不应该只有这么小的图片。</p>
+<p><img src="/blogs/21720/image-20240831205131507.png" alt="image-20240831205131507"></p>
+<p>接着 <code>F12</code> 打开开发者工具，检查这个图片的元素，发现在 CSS 属性中定义了 <code>max-width: 180px</code>：</p>
+<p><img src="/blogs/21720/image-20240831210115583.png" alt="image-20240831210115583"></p>
+<p>直接在开发者工具中修改该值为：<code>max-width: 500px</code></p>
+<p><img src="/blogs/21720/image-20240831210521179.png" alt="image-20240831210521179"></p>
+<p>再次查看二维码图片的效果：</p>
+<p><img src="/blogs/21720/image-20240831210618171.png" alt="image-20240831210618171"></p>
+<p>当前大小的图片已经足够被相机识别了。</p>
+<p>所以问题的原因就是 <code>max-width</code> 的默认值对于微信公众推广图片来说太小了。</p>
+<p>当然，为了避免使用这种宽高比很大的图片，我们还可以截图，仅保留二维码的部分，而 <code>max-width</code> 的值依然为默认的 <code>180px</code> ，则效果如下所示：</p>
+<p><img src="/blogs/21720/image-20240831211449357.png" alt="image-20240831211449357"></p>
+<p>在这种情况下，二维码是足够大，也能够被正确识别的。但是似乎又少了一点微信的标志性的特色。</p>
+<p>此外，还可以发现，二维码中有底层元素的 logo 的 ”印子“：</p>
+<p><img src="/blogs/21720/image-20240831212046068.png" alt="image-20240831212046068"></p>
+<p><img src="/blogs/21720/image-20240831212708999.png" alt="image-20240831212708999"></p>
+<p><img src="/blogs/21720/image-20240831212018720.png" alt="image-20240831212018720"></p>
+<p>在某些情况下可能会影响二维码的识别。</p>
+<p>此外，我们同时还发现当 <code>max-width</code> 的值过大时，二维码显示被下方的评论组件 “截断”，效果如下：</p>
+<p><img src="/blogs/21720/image-20240901083926322.png" alt="image-20240901083926322"></p>
+<blockquote>
+<p>这里的 ”印子“ 是因为我设置了 <code>AddToAny</code> ，设置后会生成分享按钮，可用于将文章链接分享至微信或其他第三方应用。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AddToAny Share. See: https://www.addtoany.com</span></span><br><span class="line"><span class="attr">addtoany:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">buttons:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">wechat</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="探索解决方案"><a href="#探索解决方案" class="headerlink" title="探索解决方案"></a>探索解决方案</h1><h2 id="二维码图片显示不完整问题"><a href="#二维码图片显示不完整问题" class="headerlink" title="二维码图片显示不完整问题"></a>二维码图片显示不完整问题</h2><p>我们先关注”印子“和当<code>max-width</code> 的值过大时图像显示不完整的问题，这种问题应该是：本应在下层展示的元素却和上层元素发生了重叠。发生这种情况的原因应该是这两个元素没有明确指定上下层关系。那么我们可以考虑显示指定这两个元素的上下层关系。</p>
+<p>因为我并不熟悉前端，那么这种问题我们就问一下 GPT ：</p>
+<p><img src="/blogs/21720/image-20240831214049853.png" alt="image-20240831214049853"></p>
+<p>在回复中，我们看到其使用 <code>z-index</code> 属性来实现这个需求，那么我们可以在开发者工具中直接添加这个 CSS 属性：</p>
+<p><img src="/blogs/21720/image-20240831214438826.png" alt="image-20240831214438826"></p>
+<p>效果如下：</p>
+<p><img src="/blogs/21720/image-20240831214504348.png" alt="image-20240831214504348"></p>
+<p><img src="/blogs/21720/image-20240901084257134.png" alt="image-20240901084257134"></p>
+<p>可以看到，现在已经达到了我们想要的效果：</p>
+<ul>
+<li>下层的 logo 不会在二维码上留下 “印子”</li>
+<li>评论组件不会 “截断” 二维码图片</li>
+<li>得到了清晰完整的二维码图片</li>
+</ul>
+<h2 id="微信公众号推广图宽度问题"><a href="#微信公众号推广图宽度问题" class="headerlink" title="微信公众号推广图宽度问题"></a>微信公众号推广图宽度问题</h2><p>接着，我们再尝试修改最大宽度的默认值，使其支持带有明显微信特色的公众号推广图。</p>
+<p>fork 并拉取 NexT 主题的代码：<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">next-theme&#x2F;hexo-theme-next: 🎉 Elegant and powerful theme for Hexo. (github.com)</a></p>
+<p>在 IDE 中打开代码文件，并搜索 <code>social-item-img</code> 关键词，找到这个样式是在 <code>source\css\_common\components\post\post-followme.styl</code> 文件中：</p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.social-item-img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="variable">$post</span>-reward-img-width;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, <span class="number">20px</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，<code>max-width</code> 是读取 <code>post-reward-img-width</code> 变量的值，从变量的名称来看这个是与 <code>reward</code> （打赏）有关的变量。</p>
+<p>reward 是主题中支持打赏的配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Donate (Sponsor) settings</span></span><br><span class="line"><span class="comment"># Front-matter variable (nonsupport animation).</span></span><br><span class="line"><span class="attr">reward_settings:</span></span><br><span class="line">  <span class="comment"># If true, a donate button will be displayed in every article by default.</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">animation:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">reward:</span></span><br><span class="line">  <span class="attr">wechatpay:</span> <span class="string">/images/wechatpay.png</span></span><br><span class="line">  <span class="comment">#alipay: /images/alipay.png</span></span><br><span class="line">  <span class="comment">#paypal: /images/paypal.png</span></span><br><span class="line">  <span class="comment">#bitcoin: /images/bitcoin.png</span></span><br></pre></td></tr></table></figure>
+
+<p>这里设置了微信赞赏码，效果如下：</p>
+<p><img src="/blogs/21720/image-20240901080233487.png" alt="image-20240901080233487"></p>
+<p>这里应该是复用了打赏相关的变量。我们也确实在同一路径找到了打赏对应的 CSS 文件： <code>\source\css\_common\components\post\post-reward.styl</code></p>
+<p>其中也确实用到了 <code>$post-reward-img-width</code> 变量：</p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">margin</span>: .<span class="number">8em</span> <span class="number">2em</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="variable">$post</span>-reward-img-width;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>max-width: 100%;</code>：此属性限制了图像的最大宽度为包含它的元素的宽度的100%。查看源代码并使用开发者工具检查元素可以知道其父元素的宽度是自适应的。</p>
+<p>所以这里图片的宽度一般都是由 <code>$post-reward-img-width</code> 变量确定的。</p>
+<p>搜索该变量，找到其在 <code>\source\css\_variables\base.styl</code> 文件中定义，且值为 <code>180px</code></p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$post</span>-reward-img-<span class="attribute">width</span>        = <span class="number">180px</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改代码"><a href="#修改代码" class="headerlink" title="修改代码"></a>修改代码</h1><p>通过上面的分析，我们可以知道，需要修改的地方只有一处，即 <code>source\css\_common\components\post\post-followme.styl</code> 文件中的 <code>.social-item-img</code> 选择器：</p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.social-item-img</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="variable">$post</span>-reward-img-width;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, <span class="number">20px</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要做的修改是：</p>
+<ul>
+<li>增加 <code>z-index</code> 属性</li>
+<li>定义 <code>max-width</code> 属性值的变量</li>
+</ul>
+<h2 id="增加-z-index-属性"><a href="#增加-z-index-属性" class="headerlink" title="增加 z-index 属性"></a>增加 z-index 属性</h2><p>这个比较简单增加在 <code>.social-item-img</code> 选择器中添加就行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.social-item-img &#123;</span><br><span class="line">    display: none;</span><br><span class="line">    left: 50%;</span><br><span class="line">    max-width: $post-reward-img-width;</span><br><span class="line">    position: absolute;</span><br><span class="line">    transform: translate(-50%, 20px);</span><br><span class="line">    z-index: 1;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="定义-max-width-属性值的变量"><a href="#定义-max-width-属性值的变量" class="headerlink" title="定义 max-width 属性值的变量"></a>定义 <code>max-width</code> 属性值的变量</h2><p><code>$post-reward-img-width</code> 变量是与 <code>reward</code> 打赏场景相关的，这里是 <code>follow me</code> 关注的场景，所以可以考虑新建一个变量。</p>
+<p>新建变量名为：<code>post-followme-img-width</code></p>
+<p>将新变量也定义在 <code>\source\css\_variables\base.styl</code> 文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$post-reward-img-width        = 180px;</span><br><span class="line">$post-followme-img-width      = 460px;</span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>.social-item-img</code> 选择器，<code>max-width</code> 引用<code>$post-followme-img-width</code> ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.social-item-img &#123;</span><br><span class="line">    display: none;</span><br><span class="line">    left: 50%;</span><br><span class="line">    max-width: $post-followme-img-width;</span><br><span class="line">    position: absolute;</span><br><span class="line">    transform: translate(-50%, 20px);</span><br><span class="line">    z-index: 1;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我选择的值是 460px，显示效果如下：</p>
+<p><img src="/blogs/21720/image-20240901092041031.png" alt="image-20240901092041031"></p>
+<h1 id="提交-PR"><a href="#提交-PR" class="headerlink" title="提交 PR"></a>提交 PR</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &#x27;Support displaying wider follow-me QR code images&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/blogs/21720/image-20240901095057904.png" alt="image-20240901095057904">\</p>
+<p>查看社区对 PR 的要求，按需填写：</p>
+<p><img src="/blogs/21720/image-20240901095800369.png" alt="image-20240901095800369"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="彭嘉俊 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>彭嘉俊
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://nobug.world/blogs/21720/" title="记一次为NexT主题提交PR的经过">https://nobug.world/blogs/21720/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.png">
+      </div>
+  </div>
+</div>
+
+
+        
+  <div class="social-like a2a_kit a2a_kit_size_32 a2a_default_style">
+    <a class="a2a_dd" target="_blank" rel="noopener" href="https://www.addtoany.com/share"></a>
+      <a class="a2a_button_wechat"></a>
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blogs/25729/" rel="prev" title="TDD实现Spring（DI容器）">
+                  <i class="fa fa-angle-left"></i> TDD实现Spring（DI容器）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">彭嘉俊</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">65k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">3:55</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  <script src="/js/third-party/addtoany.js"></script>
+
+  
+
+
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://blogs-waline.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":true,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":true,"comment_count":true,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/blogs/21720/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

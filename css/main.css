@@ -1215,7 +1215,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #4101ff;
+    background: #86ffc8;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2201,9 +2201,10 @@ pre code {
 .followme .social-list .social-item-img {
   display: none;
   left: 50%;
-  max-width: 180px;
+  max-width: 460px;
   position: absolute;
   transform: translate(-50%, 20px);
+  z-index: 1;
 }
 .category-all-page .category-all-title {
   text-align: center;
